@@ -5,13 +5,13 @@
   <% end %>
 </div>
 
-<% if notice %>
-  <div id="notice"><%= notice %></div>
-<% end %>
-
-
 <div id="subtitles">
-  <% if @subtitles.present? %>
-    <%= render :partial => 'subtitles/subtitle', :collection => @subtitles %>
+  <% if notice %>
+    <div class="notice"><%= notice %></div>
   <% end %>
+  
+  <% if @subtitles.present? %>
+    <%= render @subtitles %>
+  <% end %>
+
 </div>

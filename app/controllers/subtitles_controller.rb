@@ -1,4 +1,6 @@
 class SubtitlesController < ApplicationController
+  before_filter :admin?, :except => :download
+
   # GET /subtitles
   # GET /subtitles.json
   def index
@@ -80,19 +82,6 @@ class SubtitlesController < ApplicationController
       format.json { head :ok }
     end
   end
-
-  def search
-    @subtitles = Subtitle.search params[:q]
-    
-    respond_to do |format|
-      if @subtitles
-        format.html 
-      else  
-        format.html { redirect_to :back, :notice => "Nenhuma legenda encontrada" }
-      end
-    end
-  end
-
 
   def download
     @file = LtvApi.baixar(params[:id])

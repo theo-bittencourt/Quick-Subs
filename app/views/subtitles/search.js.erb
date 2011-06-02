@@ -1,9 +1,0 @@
-<% if @subtitles.present? %>
-  $("#subtitles").html("<%= @subtitles[1] %>")
-<% else %>
-  $("#alert").html("<%= escape_javascript(flash[:alert]) %>")
-<% end %>
-
-  
-
-

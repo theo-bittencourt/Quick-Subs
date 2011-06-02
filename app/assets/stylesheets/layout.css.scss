@@ -48,8 +48,13 @@ div.field, div.actions {
   padding: 12px 8px 10px;
 }
 
-#notice {
-  color: #50774f;
+.notice {
+  color: #bd901f;
+  font-weight: bold;
+}
+
+.alert {
+  color: #971c0b;
   font-weight: bold;
 }
 

@@ -2,7 +2,6 @@ QuickSubs::Application.routes.draw do
   root :to => "home#index", :as => 'home'
   
   resources :subtitles do
-    get :search, :on => :collection
     get :download, :on => :member
   end
 
