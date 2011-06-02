@@ -1,0 +1,30 @@
+/* 
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+  You can use Sass (SCSS) here: http://sass-lang.com/
+*/
+
+.subtitle {
+  font-size: 14px;
+  line-height: 2em;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+  a:hover{
+    padding: 3px;
+  }
+}
+
+#subtitles_search{
+  margin-bottom: 20px;
+  #q{
+    height: 40px;
+    font-size: 22px;
+  }
+  [type=submit]{
+    height: 33px
+  }
+
+}
+
+#subtitles{
+}

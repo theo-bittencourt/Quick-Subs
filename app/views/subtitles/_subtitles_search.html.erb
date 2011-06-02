@@ -1,0 +1,6 @@
+<div id="subtitles_search">
+  <%= form_tag search_subtitles_path, :method => :get do %>
+    <%= search_field_tag :q %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</div>

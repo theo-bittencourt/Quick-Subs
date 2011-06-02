@@ -1,0 +1,12 @@
+<div id="subtitles_search">
+  <%= form_tag home_path, :method => :get do %>
+    <%= search_field_tag :q, params[:q], :size => 30 %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</div>
+
+<div id="subtitles">
+  <% if @subtitles.present? %>
+    <%= render :partial => 'subtitles/subtitle', :collection => @subtitles %>
+  <% end %>
+</div>

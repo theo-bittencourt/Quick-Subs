@@ -1,0 +1,9 @@
+== Quick Subs ==
+
+Criei esta aplicação para meu próprio aprendizado.
+
+A aplicação é uma adaptação de https://github.com/fabiano/legendas.git para Rails.
+É um 'atalho' para o site 'legendas.tv'.
+
+A aplicação pode ser vista funcionando aqui:
+http://quick-subs.heroku.com/

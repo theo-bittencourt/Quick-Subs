@@ -1,0 +1,18 @@
+<h1>Subtitles</h1>
+
+<%= render :partial => 'subtitles_search' %>
+
+<table>
+  <% @subtitles.each do |subtitle| %>
+    <tr>
+      <td><%= link_to subtitle[:nome], :controller => :subtitles, :action => :download, :id => subtitle[:id], :name => subtitle[:nome] %></td>
+      <td><%= link_to 'Show', subtitle %></td>
+      <td><%= link_to 'Edit', edit_subtitle_path(subtitle) %></td>
+      <td><%= link_to 'Destroy', subtitle, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Subtitle', new_subtitle_path %>
