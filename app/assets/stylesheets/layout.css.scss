@@ -9,17 +9,14 @@ $main_font_color: #222;
 
 body{
   background-color: $body_background_color;
+  margin: 0;
 }
 
 body, p, ol, ul, td {
-  font-family: helvetica, verdana, arial, sans-serif;
+  font-family: verdana, arial, sans-serif;
   font-size:   13px;
   line-height: 18px;
   color: $main_font_color;
-}
-
-body{
-  padding: 0 35px;
 }
 
 pre {
@@ -41,11 +38,14 @@ div.field, div.actions {
 #title{
   background-color: #333;
   color: #eee;
-  font-size: 40px;
+  font-size: 55px;
   font-weight: bolder;
-  line-height: 40px;
-  margin: 15px 0 40px;
-  padding: 12px 8px 10px;
+  line-height: 55px;
+  padding: 40px 40px 20px;
+}
+
+#content{
+  padding: 45px 40px;
 }
 
 .notice {
