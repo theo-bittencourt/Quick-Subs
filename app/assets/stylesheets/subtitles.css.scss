@@ -7,7 +7,6 @@
 .subtitle {
   font-size: 14px;
   line-height: 2em;
-  letter-spacing: 0.05em;
   font-weight: bold;
   a:hover{
     padding: 3px;
@@ -16,12 +15,29 @@
 
 #subtitles_search{
   margin-bottom: 20px;
-  #q{
+  [type=search]{
+    display: inline-block;
+    float: left;
     height: 40px;
+    width: 18em;
     font-size: 22px;
+    margin: 0;
+    padding: 0 0 0 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #AAA;
+    -webkit-appearance: none;
+    -moz-box-sizing: border-box;
   }
   [type=submit]{
-    height: 33px
+    font-size: 16px;
+    font-weight: bold;
+    color: #eee;
+    height: 40px;
+    padding: 0 12px;
+    background-color: #333;
+    margin: 0;
+    border: 0;
   }
 
 }
