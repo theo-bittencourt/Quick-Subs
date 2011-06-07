@@ -40,12 +40,14 @@
     font-weight: bold;
     color: #eee;
     height: 40px;
-    padding: 0 12px;
+    padding: 0 15px;
     margin: 0;
     border: 0;
+    border-radius: 0 12px 12px 0; 
   }
 
 }
 
 #subtitles{
+  float: left;
 }
