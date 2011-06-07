@@ -7,8 +7,13 @@
 $body_background_color: #eee;
 $main_font_color: #222;
 
+@font-face{
+  font-family: tango;
+  src: url(tango.ttf);
+}
+
 body{
-  background-color: $body_background_color;
+  background-image: url(bg.jpg);
   margin: 0;
 }
 
@@ -36,11 +41,11 @@ div.field, div.actions {
 }
 
 #title{
-  background-color: #333;
+  font-family: tango;
+  background-image: url(black_bg.jpg);
   color: #eee;
-  font-size: 55px;
-  font-weight: bolder;
-  line-height: 55px;
+  font-size: 80px;
+  line-height: 80px;
   padding: 40px 40px 20px;
 }
 

@@ -1,8 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.beta1'
+gem 'rails', '3.1.0.rc1'
 gem 'mechanize'
-gem 'sprockets', '2.0.0.beta.2'
 
 group :production do
   gem 'therubyracer-heroku', '0.8.1.pre3'

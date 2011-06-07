@@ -5,9 +5,13 @@
 */
 
 .subtitle {
-  font-size: 14px;
-  line-height: 2em;
+  font-family: monospace;
+  font-size: 15px;
   font-weight: bold;
+  line-height: 2em;
+  a{
+    text-decoration: none;
+  }
   a:hover{
     padding: 3px;
   }
@@ -16,6 +20,7 @@
 #subtitles_search{
   margin-bottom: 20px;
   [type=search]{
+    font-family: sans;
     display: inline-block;
     float: left;
     height: 40px;
@@ -30,12 +35,12 @@
     -moz-box-sizing: border-box;
   }
   [type=submit]{
+    background-image: url(black_bg.jpg);
     font-size: 16px;
     font-weight: bold;
     color: #eee;
     height: 40px;
     padding: 0 12px;
-    background-color: #333;
     margin: 0;
     border: 0;
   }
