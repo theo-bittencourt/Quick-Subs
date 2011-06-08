@@ -38,14 +38,25 @@ class LtvApi
     while pagina
         pagina.search("#conteudodest > div > span").each do |item|
             elemento_id = item.search(".buscaDestaque", ".buscaNDestaque")
-            elemento_nome = item.search(".brls")
 
             id = elemento_id.attr("onclick").text
             id = id.gsub(/(javascript|abredown|[^a-zA-Z0-9])/,"")
 
-            nome = elemento_nome.text
+            nome = item.search(".brls").text
+            legender = item.search("a").text
+            data_envio = item.search("td")[2].text
+            nota = item.search("td")[1].text[/\d\d\/10/]
+            downloads = item.search("td")[1].text[/Downloads:  \d*/][/\b\d+\b/]
+            flag_link = "http://legendas.tv/" + item.search("td")[4].search("img").attr("src").text
 
-            legendas << { :id => id, :nome => nome }
+            legendas << { :id => id,
+                          :nome => nome,
+                          :legender => legender,
+                          :data_envio => data_envio,
+                          :nota => nota,
+                          :downloads => downloads,
+                          :flag_link => flag_link
+                        }
         end
 
         pagina = proxima_pagina(pagina)

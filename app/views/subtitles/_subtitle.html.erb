@@ -1,3 +1,24 @@
 <div class="subtitle">
   <%= link_to subtitle.name, :controller => :subtitles, :action => :download, :id => subtitle.ltv_id, :name => subtitle.name %>
+
+  <div class="info">
+    <table>
+      <tr>
+        <td class='first_column'>Legender</td>
+        <td><%= subtitle.legender %></td>
+      </tr>
+      <tr>
+        <td class='first_column'>Nota</td>
+        <td><%= subtitle.nota %></td>
+      </tr>
+      <tr>
+        <td class='first_column'>Downloads</td>
+        <td><%= subtitle.downloads %></td>
+      </tr>
+      <tr>
+        <td class='first_column'>Envio</td>
+        <td><%= subtitle.data_envio %></td>
+      </tr>
+    </table>
+  </div>
 </div>

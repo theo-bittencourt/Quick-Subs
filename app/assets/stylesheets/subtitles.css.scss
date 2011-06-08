@@ -8,17 +8,38 @@
   font-family: monospace;
   font-size: 15px;
   font-weight: bold;
-  line-height: 2em;
   a{
     text-decoration: none;
+    &:hover{
+      background-color: rgba(3,3,3,0.2);
+    }
   }
-  a:hover{
-    padding: 3px;
+  margin-bottom: 1em;
+  position: relative;
+
+  .info{
+    display: none;
+    position: absolute;
+    top: 17px; //3px + 15px + 3px (top-pad + font-size + bot-pad of .subtitle)
+    z-index: 1;
+    padding: 10px;
+    background-color: rgba(3,3,3,0.85);
+    table{
+      td{
+        color: #eee;
+        font-family: monospace;
+        font-size: 12px;
+        font-weight: normal;
+      }
+      .first_column{
+        width: 90px;
+      }
+    }
   }
 }
 
 #subtitles_search{
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   [type=search]{
     font-family: sans;
     display: inline-block;
@@ -33,21 +54,20 @@
     border-color: #AAA;
     -webkit-appearance: none;
     -moz-box-sizing: border-box;
-  }
-  [type=submit]{
-    background-image: url(black_bg.jpg);
-    font-size: 16px;
-    font-weight: bold;
-    color: #eee;
-    height: 40px;
-    padding: 0 15px;
-    margin: 0;
-    border: 0;
-    border-radius: 0 12px 12px 0; 
-  }
+}
+[type=submit]{
+  background-image: url(black_bg.jpg);
+  font-size: 16px;
+  font-weight: bold;
+  color: #eee;
+  height: 40px;
+  padding: 0 15px;
+  margin: 0;
+  border: 0;
+  border-radius: 0 12px 12px 0; 
+}
 
 }
 
 #subtitles{
-  float: left;
 }

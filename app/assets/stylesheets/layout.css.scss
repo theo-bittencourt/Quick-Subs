@@ -32,8 +32,6 @@ pre {
 
 a { 
   color: $main_font_color;
-  &:visited { color: #666; }
-  &:hover { color: #fff; background-color:  #2b453d; }
 }
 
 div.field, div.actions {
