@@ -55,5 +55,7 @@ $(document).ready ->
     $(this).hide(200)
     $('#download_bt').hide(200)
     window.subs_to_download = null
-    
+
+
+ 
 
