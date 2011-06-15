@@ -9,7 +9,12 @@ $main_font_color: #222;
 
 @font-face{
   font-family: tango;
-  src: url(tango.ttf);
+  src: url(tango.ttf) format("truetype");
+}
+
+@font-face{
+  font-family: ubuntu;
+  src: url(Ubuntu-R.ttf) format("truetype");
 }
 
 body{
@@ -17,8 +22,16 @@ body{
   margin: 0;
 }
 
+#bottom{
+  height: 20px;
+  width: 100%;
+  background-color: #222;
+  position: fixed;
+  bottom: 0;
+}
+
 body, p, ol, ul, td {
-  font-family: verdana, arial, sans-serif;
+  font-family: ubuntu, verdana, arial, sans-serif;
   font-size:   13px;
   line-height: 18px;
   color: $main_font_color;

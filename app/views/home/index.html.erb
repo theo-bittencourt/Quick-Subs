@@ -10,8 +10,15 @@
     <div class="notice"><%= notice %></div>
   <% end %>
   
+    
   <% if @subtitles.present? %>
     <%= render @subtitles %>
   <% end %>
+
+  <%= link_to "Baixar", {:controller => :subtitles, :action => :download}, {:id => 'download_bt', :title => 'Baixar todas as legendas selecionadas'} %>
+
+  <div id="unselect_all" title="Desmarcar todas as legendas selecionadas">
+    <span>x</span>
+  </div>
 
 </div>

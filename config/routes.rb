@@ -3,6 +3,7 @@ QuickSubs::Application.routes.draw do
   
   resources :subtitles do
     get :download, :on => :member
+    get :download, :on => :collection
   end
 
   

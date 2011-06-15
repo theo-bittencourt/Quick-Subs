@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc1'
 gem 'mechanize'
+gem 'rubyzip'
 
 group :production do
   gem 'therubyracer-heroku', '0.8.1.pre3'
@@ -9,6 +10,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'mongrel', '>=1.2.0.pre2'
   gem 'sqlite3'
   gem 'ruby-debug19'
 end

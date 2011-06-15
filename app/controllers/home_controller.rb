@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  caches_page :index
+
   def index
     if params[:q].present?
       @subtitles = Subtitle.search params[:q]

@@ -1,3 +1,5 @@
+#encoding=utf-8
+
 class SubtitlesController < ApplicationController
   before_filter :admin?, :except => :download
 
@@ -84,12 +86,31 @@ class SubtitlesController < ApplicationController
   end
 
   def download
-    @file = LtvApi.baixar(params[:id])
+    respond_to do |format|
+      # download one subtitle
+      if subtitle = LtvApi.baixar(params[:id], :name => params[:name])
+        format.html {
+          send_data(
+            subtitle[:body],
+            :type => subtitle[:content_type], 
+            :filename => subtitle[:name]
+          )
+        }
+       
+      # download a pack  
+      elsif pack = LtvApi.baixar_pack(params[:subs])
+        format.html {
+          send_file(
+            pack.path,
+            :type => 'application/zip',
+            :filename => "quicksubs_pack_#{Time.now.strftime("at_%H_%M_%S")}.zip"
+          )
+        }
 
-    send_data(
-      @file.body, 
-      :type => @file.response["content-type"], 
-      :filename => params[:name]+File.extname(@file.filename)
-    )  
+      else
+        redirect_to :back, :notice => "Ocorreu um problema e não foi possível realizar o download."
+      end
+    end
   end
+
 end
