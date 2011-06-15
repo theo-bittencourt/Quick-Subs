@@ -45,12 +45,13 @@ $(document).ready ->
   # add subs_to_download in download_bt link parameter
   
   $('#download_bt').click ->
+    navigator.status= "Montando pack..."
     new_download_bt_href = $(this).attr('href') + '?' + $.param({subs: window.subs_to_download})
     $(this).attr('href', new_download_bt_href)
 
 
-
   $('#unselect_all').click ->
+    $('a').data('selected?', false)
     $('a').css('background-color', '')
     $(this).hide(200)
     $('#download_bt').hide(200)
