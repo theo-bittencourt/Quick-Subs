@@ -3,7 +3,16 @@
     <%= search_field_tag :q, params[:q] %>
     <%= submit_tag "Buscar", :name => nil %>
   <% end %>
+  
+  <div id="search_terms">
+    <% if !@search_terms.nil? %>
+      <% @search_terms.each do |q| %>
+        <%= link_to q, {:controller => 'home', :action => 'index', :q => q} %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
+
 
 <div id="subtitles">
   <% if notice %>

@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0.rc1'
 gem 'mechanize'
 gem 'rubyzip'
+gem 'unicode_utils'
 
 group :production do
   gem 'therubyracer-heroku', '0.8.1.pre3'

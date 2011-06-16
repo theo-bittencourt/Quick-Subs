@@ -71,6 +71,20 @@
     border: 0;
     border-radius: 0 12px 12px 0; 
   }
+  #search_terms{
+    display: inline-block;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 440px; // width of search field
+    a{
+      margin-left: 5px;
+      &:first-child{
+        margin-left: 0px;
+      }
+    }  
+  }
 
 }
 
