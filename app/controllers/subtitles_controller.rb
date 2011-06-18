@@ -88,12 +88,12 @@ class SubtitlesController < ApplicationController
   def download
     respond_to do |format|
       # download one subtitle
-      if subtitle = LtvApi.baixar(params[:id], :name => params[:name])
+      if subtitle_mechanize_file = LtvApi.baixar(params[:id], :name => params[:name])
         format.html {
           send_data(
-            subtitle[:body],
-            :type => subtitle[:content_type], 
-            :filename => subtitle[:name]
+            subtitle_mechanize_file.body,
+            :type => subtitle_mechanize_file.response['content-type'], 
+            :filename => subtitle_mechanize_file.filename
           )
         }
        

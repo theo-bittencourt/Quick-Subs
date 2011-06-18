@@ -30,7 +30,7 @@ class LtvApi
     end
     
     subtitle_mechanize_file = @agente.get("http://legendas.tv/info.php?d=#{id}&c=1")
-
+    
     if options[:name]
       subtitle_mechanize_file.filename =  options[:name].gsub(/\//, '_') + subtitle_mechanize_file.filename[/....$/]
     else
@@ -50,10 +50,17 @@ class LtvApi
         subtitle_mechanize_files << LtvApi.baixar(index['id'], :name => index['name'])
     end
     
+    
+    # Verifica se existe o diretorio 'tmp' para salvar as legendas temporarias. Caso contrario, cria.
+    if !File.directory?(File.dirname(File.expand_path(__FILE__)) + "/tmp/")
+      Dir.mkdir(File.dirname(File.expand_path(__FILE__)) + "/tmp/")
+    end
+
     subtitles_full_paths = []
     subtitle_mechanize_files.each do |sub|
       full_path = File.dirname(File.expand_path(__FILE__)) + "/tmp/#{sub.filename}"
       subtitles_full_paths << full_path
+
       sub.save(full_path)
     end
 
@@ -63,15 +70,6 @@ class LtvApi
 
     return pack_full_path + pack_extension
 
-    #tmp_pack_file = Tempfile.new(["sub_pack_tmp", '.zip'])
-
-    #Zip::ZipOutputStream.open(tmp_pack_file.path) do |zos|
-      #subtitle_array.each do |sub|
-        #zos.put_next_entry(sub[:name])
-        #zos.write(sub[:body])
-      #end
-    #end
-    
   end
 
 
