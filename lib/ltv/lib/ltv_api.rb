@@ -29,19 +29,15 @@ class LtvApi
       return nil
     end
     
-    mechanize_file = @agente.get("http://legendas.tv/info.php?d=#{id}&c=1")
-    
-    subtitle = {} #this hash will be returned
+    subtitle_mechanize_file = @agente.get("http://legendas.tv/info.php?d=#{id}&c=1")
 
     if options[:name]
-      subtitle[:name] =  options[:name].gsub(/\//, '_') + mechanize_file.filename[/....$/]
+      subtitle_mechanize_file.filename =  options[:name].gsub(/\//, '_') + subtitle_mechanize_file.filename[/....$/]
     else
-      subtitle[:name] =  mechanize_file.filename.gsub(/\//, '_')
+      subtitle_mechanize_file.filename =  subtitle_mechanize_file.filename.gsub(/\//, '_')
     end      
-    subtitle[:content_type] =   mechanize_file.response['content-type']
-    subtitle[:body] =           mechanize_file.body
-
-    return subtitle
+    
+    return subtitle_mechanize_file
   end
 
   def self.baixar_pack(subs = {})
@@ -49,22 +45,33 @@ class LtvApi
       return nil
     end
 
-    subtitle_array = []
+    subtitle_mechanize_files = []
     subs.each_value do |index|
-        subtitle_array << LtvApi.baixar(index['id'], :name => index['name'])
-    end
-
-    tmp_pack_file = Tempfile.new(["sub_pack_tmp", '.zip'])
-    #tmp_pack_file = Tempfile.new(["sub_pack_tmp", '.zip'])
-
-    Zip::ZipOutputStream.open(tmp_pack_file.path) do |zos|
-      subtitle_array.each do |sub|
-        zos.put_next_entry(sub[:name])
-        zos.write(sub[:body])
-      end
+        subtitle_mechanize_files << LtvApi.baixar(index['id'], :name => index['name'])
     end
     
-    return tmp_pack_file
+    subtitles_full_paths = []
+    subtitle_mechanize_files.each do |sub|
+      full_path = File.dirname(File.expand_path(__FILE__)) + "/tmp/#{sub.filename}"
+      subtitles_full_paths << full_path
+      sub.save(full_path)
+    end
+
+    pack_full_path = File.dirname(File.expand_path(__FILE__)) + "/tmp/quicksubs_pack_#{Time.now.strftime("at_%H_%M_%S")}"
+    pack_extension = ".zip"
+    system("zip -j #{pack_full_path} #{subtitles_full_paths.join(' ')}")
+
+    return pack_full_path + pack_extension
+
+    #tmp_pack_file = Tempfile.new(["sub_pack_tmp", '.zip'])
+
+    #Zip::ZipOutputStream.open(tmp_pack_file.path) do |zos|
+      #subtitle_array.each do |sub|
+        #zos.put_next_entry(sub[:name])
+        #zos.write(sub[:body])
+      #end
+    #end
+    
   end
 
 

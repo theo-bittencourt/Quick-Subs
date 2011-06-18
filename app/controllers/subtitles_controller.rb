@@ -98,13 +98,9 @@ class SubtitlesController < ApplicationController
         }
        
       # download a pack  
-      elsif pack = LtvApi.baixar_pack(params[:subs])
+      elsif pack_full_path = LtvApi.baixar_pack(params[:subs])
         format.html {
-          send_file(
-            pack.path,
-            :type => 'application/zip',
-            :filename => "quicksubs_pack_#{Time.now.strftime("at_%H_%M_%S")}.zip"
-          )
+          send_file(pack_full_path, :type => 'application/zip')
         }
 
       else
