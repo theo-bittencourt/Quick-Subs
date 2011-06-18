@@ -51,11 +51,6 @@ class LtvApi
     end
     
     
-    # Verifica se existe o diretorio 'tmp' para salvar as legendas temporarias. Caso contrario, cria.
-    if !File.directory?(File.dirname(File.expand_path(__FILE__)) + "/tmp/")
-      Dir.mkdir(File.dirname(File.expand_path(__FILE__)) + "/tmp/")
-    end
-
     subtitles_full_paths = []
     subtitle_mechanize_files.each do |sub|
       full_path = File.dirname(File.expand_path(__FILE__)) + "/tmp/#{sub.filename}"
