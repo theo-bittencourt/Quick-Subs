@@ -15,6 +15,7 @@ $(document).ready ->
   # multiple selection for download
 
   $('.subtitle > a').click (event) ->
+      return
       if event.ctrlKey or event.which is 2
         event.preventDefault()
       else
