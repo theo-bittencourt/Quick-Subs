@@ -11,7 +11,12 @@ class LtvApi
 
   def self.iniciar
     conectar
-    autenticar unless check_auth_status
+
+    if check_auth_status
+      return "ja esta autenticado"
+    else
+      autenticar
+    end
   end
 
   def self.conectar
@@ -32,7 +37,7 @@ class LtvApi
     retorno =  @agent.submit(form_login)
     if retorno.search("//*[contains(text(), 'Dados incorretos!')]").empty?
       @agent.page.links[0].click
-      true
+      "autenticou"
     end
   end
 
