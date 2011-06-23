@@ -1,4 +1,4 @@
-/* 
+/*
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
   You can use Sass (SCSS) here: http://sass-lang.com/
@@ -18,8 +18,27 @@ $main_font_color: #222;
 }
 
 body{
-  background-image: url(bg.jpg);
+  background-image: url(blue_bg.png);
   margin: 0;
+}
+
+#header{
+  background-image: url(gray_bg.png);
+  height: 145px;
+}
+
+#title{
+  background-image: url(title.png);
+  background-repeat: no-repeat;
+  height: 71px;
+  width: 357px;
+  margin: 50px 0 0 40px;
+  display: inline-block;
+
+}
+
+#content{
+  padding: 45px 40px;
 }
 
 #bottom{
@@ -43,7 +62,7 @@ pre {
   font-size: 11px;
 }
 
-a { 
+a {
   color: $main_font_color;
 }
 
@@ -51,18 +70,7 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
-#title{
-  font-family: tango;
-  background-image: url(black_bg.jpg);
-  color: #eee;
-  font-size: 80px;
-  line-height: 80px;
-  padding: 40px 40px 20px;
-}
 
-#content{
-  padding: 45px 40px;
-}
 
 .notice {
   color: #bd901f;
@@ -87,7 +95,7 @@ div.field, div.actions {
   padding-bottom: 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-  
+
   h2 {
     text-align: left;
     font-weight: bold;
@@ -98,7 +106,7 @@ div.field, div.actions {
     background-color: #c00;
     color: #fff;
   }
-  
+
   ul li {
     font-size: 12px;
     list-style: square;

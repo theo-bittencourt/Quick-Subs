@@ -7,18 +7,18 @@ class SubtitlesController < ApplicationController
   # GET /subtitles.json
   def index
     @subtitles = Subtitle.all
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @subtitles }
     end
   end
-  
+
   # GET /subtitles/1
   # GET /subtitles/1.json
   def show
     @subtitle = Subtitle.find(params[:id])
-  
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @subtitle }
@@ -92,16 +92,19 @@ class SubtitlesController < ApplicationController
         format.html {
           send_data(
             subtitle_mechanize_file.body,
-            :type => subtitle_mechanize_file.response['content-type'], 
+            :type => subtitle_mechanize_file.response['content-type'],
             :filename => subtitle_mechanize_file.filename
           )
         }
-       
-      # download a pack  
+
+      # download a pack
       elsif pack_full_path = LtvApi.baixar_pack(params[:subs])
         format.html {
-          send_file(pack_full_path, :type => 'application/zip')
+          send_file(  pack_full_path,
+                      :type => 'application/zip',
+                      :filename => 'quicksubs_pack.zip')
         }
+        #system("rm -f #{pack_full_path}")
 
       else
         redirect_to :back, :notice => "Ocorreu um problema e não foi possível realizar o download."

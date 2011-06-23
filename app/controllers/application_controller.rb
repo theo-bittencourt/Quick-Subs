@@ -17,16 +17,18 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    LtvApi.autenticar
+    unless LtvApi.autenticar
+      render :template => 'errors/dead_source', :layout => 'error'
+    end
   end
 
   def admin?
     redirect_to home_path, :alert => "Sem Autorização"
   end
-  
+
   def store_search_term_in_cookie(term)
     term = UnicodeUtils.downcase(term)
-    
+
     if cookies[:search_terms].nil?
       cookies.permanent[:search_terms] = term
     else

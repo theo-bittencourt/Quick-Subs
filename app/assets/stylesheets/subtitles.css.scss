@@ -1,4 +1,4 @@
-/* 
+/*
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
   You can use Sass (SCSS) here: http://sass-lang.com/
@@ -8,7 +8,16 @@
   margin-bottom: 150px;
 }
 
-.subtitle { 
+#transparent_gradient_bottom{
+  background-image: url(blue_bg_gradient.png);
+  bottom: 0px;
+  display: none;
+  height: 120px;
+  position: fixed;
+  width: 700px;
+}
+
+.subtitle {
   font-family:  ubuntu, sans-serif;
   font-size: 15px;
   letter-spacing: 1px;
@@ -22,11 +31,11 @@
         background-color: rgba(3,3,3,0.2);
     }
   }
-  
+
   .info{
     display: none;
     position: absolute;
-    top: 22px; 
+    top: 22px;
     z-index: 1;
     padding: 10px;
     background-color: rgba(3,3,3,0.85);
@@ -61,7 +70,7 @@
     width: 20em;
   }
   [type=submit]{
-    background-image: url(black_bg.jpg);
+    background-image: url(gray_bg.png);
     font-size: 16px;
     font-weight: bold;
     color: #eee;
@@ -69,7 +78,8 @@
     padding: 0 15px;
     margin: 0;
     border: 0;
-    border-radius: 0 12px 12px 0; 
+    border-radius: 0 12px 12px 0;
+    cursor: pointer;
   }
   #search_terms{
     display: inline-block;
@@ -83,7 +93,7 @@
       &:first-child{
         margin-left: 0px;
       }
-    }  
+    }
   }
 
 }

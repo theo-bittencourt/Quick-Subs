@@ -1,0 +1,30 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+  You can use Sass (SCSS) here: http://sass-lang.com/
+*/
+
+
+#error_container{
+  background-image: url(black_bg.jpg);
+  padding: 70px;
+  width: 800px;
+  margin: 30px auto auto auto;
+}
+
+.error_title{
+  text-align: center;
+  font-family: tango;
+  font-size: 60px;
+  color: #eee;
+  margin-bottom: 50px;
+}
+
+.error_desc{
+  text-align: center;
+  font-family: ubuntu;
+  font-size: 16px;
+  color: #eee;
+}
+
+

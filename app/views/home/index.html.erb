@@ -3,7 +3,7 @@
     <%= search_field_tag :q, params[:q] %>
     <%= submit_tag "Buscar", :name => nil %>
   <% end %>
-  
+
   <div id="search_terms">
     <% if !@search_terms.nil? %>
       <% @search_terms.each do |q| %>
@@ -18,16 +18,19 @@
   <% if notice %>
     <div class="notice"><%= notice %></div>
   <% end %>
-  
-    
+
+
   <% if @subtitles.present? %>
     <%= render @subtitles %>
   <% end %>
 
-  <%= link_to "Baixar", {:controller => :subtitles, :action => :download}, {:id => 'download_bt', :title => 'Baixar todas as legendas selecionadas'} %>
+</div>
 
-  <div id="unselect_all" title="Desmarcar todas as legendas selecionadas">
-    <span>x</span>
-  </div>
+<div id="transparent_gradient_bottom"></div>
 
+
+<%= link_to "Baixar", {:controller => :subtitles, :action => :download}, {:id => 'download_bt', :title => 'Baixar todas as legendas selecionadas'} %>
+
+<div id="unselect_all" title="Desmarcar todas as legendas selecionadas">
+  <span>x</span>
 </div>
