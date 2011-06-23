@@ -10,6 +10,8 @@ class LtvApi
 
   def self.autenticar(usuario='legendas1517', senha='legendas1517')
     if verificar_site_no_ar
+      @pagina_inicial = @agente.get("http://legendas.tv")
+
       form_login = @pagina_inicial.form_with(:action => "login_verificar.php")
       form_login["txtLogin"] = usuario
       form_login["txtSenha"] = senha
@@ -149,8 +151,8 @@ class LtvApi
   # retorna false se estiver morto
   def self.verificar_site_no_ar
     begin
-      Timeout::timeout(10) {
-        @pagina_inicial = @agente.get("http://legendas.tv")
+      Timeout::timeout(15) {
+        @agente.get("http://legendas.tv")
       }
     rescue Timeout::Error
       return false

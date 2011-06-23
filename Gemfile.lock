@@ -101,7 +101,6 @@ GEM
       ruby-debug-base19 (>= 0.11.19)
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
-    rubyzip (0.9.4)
     sass (3.1.1)
     sprockets (2.0.0.beta.10)
       hike (~> 1.0)
@@ -132,7 +131,6 @@ DEPENDENCIES
   pg
   rails (= 3.1.0.rc1)
   ruby-debug19
-  rubyzip
   sass
   sqlite3
   therubyracer-heroku (= 0.8.1.pre3)
