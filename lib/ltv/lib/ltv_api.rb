@@ -11,7 +11,7 @@ class LtvApi
 
   def self.iniciar
     conectar
-    autenticar
+    autenticar unless check_auth_status
   end
 
   def self.conectar
@@ -43,7 +43,9 @@ class LtvApi
   end
 
   def self.check_auth_status
-    @agent.page.link_with(:text => 'Logoff...')
+    if @agent.page
+      @agent.page.link_with(:text => 'Logoff...')
+    end
   end
 
   def self.buscar(termo)
