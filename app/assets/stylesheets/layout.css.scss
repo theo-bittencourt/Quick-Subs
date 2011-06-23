@@ -71,10 +71,12 @@ div.field, div.actions {
 }
 
 
-
 .notice {
-  color: #bd901f;
-  font-weight: bold;
+  color: #444;
+  padding: 6px;
+  display: inline-block;
+  background-color: #3EF;
+  font-size: 14px;
 }
 
 .alert {
