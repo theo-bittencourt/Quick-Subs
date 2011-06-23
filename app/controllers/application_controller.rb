@@ -3,8 +3,8 @@ require 'unicode_utils/downcase'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authenticate
   before_filter :_reload_libs, :if => :_reload_libs?
+  before_filter :ltv_init unless LtvApi.check_status
 
   def _reload_libs
     RELOAD_LIBS.each do |lib|
@@ -16,8 +16,10 @@ class ApplicationController < ActionController::Base
     defined? RELOAD_LIBS
   end
 
-  def authenticate
-    unless LtvApi.autenticar
+  def ltv_init
+    if LtvApi.iniciar
+      return
+    else
       render :template => 'errors/dead_source', :layout => 'error'
     end
   end

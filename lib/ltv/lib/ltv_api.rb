@@ -4,30 +4,53 @@ require 'mechanize'
 require 'timeout'
 
 class LtvApi
+
   LTV_ROOT = File.expand_path("../../", __FILE__)
-  @agente = Mechanize.new
 
+  @agent = Mechanize.new
 
-  def self.autenticar(usuario='legendas1517', senha='legendas1517')
-    if verificar_site_no_ar
-      @pagina_inicial = @agente.get("http://legendas.tv")
+  def self.iniciar
+    conectar
+    autenticar
+  end
 
-      form_login = @pagina_inicial.form_with(:action => "login_verificar.php")
-      form_login["txtLogin"] = usuario
-      form_login["txtSenha"] = senha
-
-      retorno =  @agente.submit(form_login)
-      retorno.search("//*[contains(text(), 'Dados incorretos!')]").empty?
-    else
+  def self.conectar
+    begin
+      Timeout::timeout(20) {
+        @ltv_home = @agent.get("http://legendas.tv")
+      }
+    rescue Timeout::Error
       return false
     end
   end
 
+  def self.autenticar(usuario='legendas1517', senha='legendas1517')
+    form_login = @ltv_home.form_with(:action => "login_verificar.php")
+    form_login["txtLogin"] = usuario
+    form_login["txtSenha"] = senha
+
+    retorno =  @agent.submit(form_login)
+    if retorno.search("//*[contains(text(), 'Dados incorretos!')]").empty?
+      @agent.page.links[0].click
+      true
+    end
+  end
+
+  def self.check_status
+    if @agent.page
+      check_auth_status
+    end
+  end
+
+  def self.check_auth_status
+    @agent.page.link_with(:text => 'Logoff...')
+  end
+
   def self.buscar(termo)
-    form_busca = @pagina_inicial.form_with(:action => "index.php?opcao=buscarlegenda")
+    form_busca = @ltv_home.form_with(:action => "index.php?opcao=buscarlegenda")
     form_busca["txtLegenda"] = termo
 
-    resultado = coletar(@agente.submit(form_busca))
+    resultado = coletar(@agent.submit(form_busca))
   end
 
   def self.baixar(id, options = {})
@@ -35,7 +58,7 @@ class LtvApi
       return nil
     end
 
-    subtitle_mechanize_file = @agente.get("http://legendas.tv/info.php?d=#{id}&c=1")
+    subtitle_mechanize_file = @agent.get("http://legendas.tv/info.php?d=#{id}&c=1")
 
     if options[:name]
       subtitle_mechanize_file.filename =  options[:name].gsub(/\//, '_') + subtitle_mechanize_file.filename[/....$/]
@@ -66,6 +89,10 @@ class LtvApi
     end
 
     pack_path = montar_pack(subtitles_full_paths)
+  end
+
+  def self.get_page
+    @current_page
   end
 
 
@@ -109,7 +136,7 @@ class LtvApi
 
   def self.proxima_pagina(pagina)
     if not pagina.search("//a[text()='Próxima']").empty?
-      proxima_pagina =  @agente.click(pagina.links_with(:text => "Próxima").first)
+      proxima_pagina =  @agent.click(pagina.links_with(:text => "Próxima").first)
     else
       nil
     end
@@ -127,8 +154,8 @@ class LtvApi
 
     pack_path = subtitles_dir
     pack_call = (   LTV_ROOT + "/vendor/p7zip/bin/7z a -tzip" + ' ' +
-                    pack_path + '.zip' + ' ' +
-                    raw_subtitles_paths.join(' ') )
+                 pack_path + '.zip' + ' ' +
+                 raw_subtitles_paths.join(' ') )
 
     system pack_call
 
@@ -137,7 +164,7 @@ class LtvApi
 
   def self.extrair_legendas(subtitles_archives_paths)
     output_dir =  LTV_ROOT + "/lib/tmp/pack_" +
-                  (hash = (Time.now.to_s + rand(1000).to_s).hash.abs.to_s)
+      (hash = (Time.now.to_s + rand(1000).to_s).hash.abs.to_s)
 
     subtitles_archives_paths.each do |path|
       unpack_call = ( LTV_ROOT + "/vendor/p7zip/bin/7z e -y -o" + output_dir + ' ' + path )
@@ -145,18 +172,6 @@ class LtvApi
     end
 
     subtitles_dir = output_dir
-  end
-
-  # verifica se o legendas.tv está vivo
-  # retorna false se estiver morto
-  def self.verificar_site_no_ar
-    begin
-      Timeout::timeout(15) {
-        @agente.get("http://legendas.tv")
-      }
-    rescue Timeout::Error
-      return false
-    end
   end
 
 end
