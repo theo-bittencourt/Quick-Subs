@@ -1,6 +1,6 @@
 <div id="subtitles_search">
   <%= form_tag home_path, :method => :get do %>
-    <%= search_field_tag :q, params[:q] %>
+    <%= search_field_tag :q, params[:q], :maxlength => 45 %>
     <%= submit_tag "Buscar", :name => nil %>
   <% end %>
 
