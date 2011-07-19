@@ -18,7 +18,6 @@
 }
 
 .subtitle {
-  font-family:  ubuntu, sans-serif;
   font-size: 15px;
   letter-spacing: 1px;
   margin-bottom: 1em;
@@ -35,7 +34,7 @@
   .info{
     display: none;
     position: absolute;
-    top: 22px;
+    top: 21px;
     z-index: 1;
     padding: 10px;
     background-color: rgba(3,3,3,0.85);
@@ -54,41 +53,47 @@
 
 #subtitles_search{
   margin-bottom: 30px;
-  [type=search]{
-    border-color: #AAA;
-    border-style: solid;
-    border-width: 1px;
-    display: inline-block;
-    float: left;
-    font-family: ubuntu, sans-serif;
-    font-size: 22px;
+  form{
     height: 40px;
-    margin: 0;
-    -moz-box-sizing: border-box;
-    padding: 0 0 0 5px;
-    -webkit-appearance: none;
-    width: 20em;
+    [type=text]{
+      border-color: #AAA;
+      border-style: solid;
+      border-width: 1px;
+      display: inline-block;
+      float: left;
+      font-size: 22px;
+      -webkit-text-stroke: 1px transparent; /* aparencia mais suave (como um anti-alias) */
+      height: 40px;
+      margin: 0;
+      -moz-box-sizing: border-box;
+      padding: 0 0 0 20px;
+      -webkit-appearance: none;
+      width: 25em;
+      border-radius: 20px;
+      outline: none;
+    }
+    [type=submit]{
+      background: transparent url(mg_glass.png) no-repeat;
+      height: 30px;
+      width: 29px;
+      border: 0;
+      cursor: pointer;
+      position: relative;
+      top: 4px;
+      left: -50px;
+      outline: none;
+    }
   }
-  [type=submit]{
-    background-image: url(gray_bg.png);
-    font-size: 16px;
-    font-weight: bold;
-    color: #eee;
-    height: 40px;
-    padding: 0 15px;
-    margin: 0;
-    border: 0;
-    border-radius: 0 12px 12px 0;
-    cursor: pointer;
-  }
+  
   #search_terms{
-    display: inline-block;
-    margin-top: 5px;
+    display: block;
+    margin: 5px 0 0 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 440px; // width of search field
+    width: 520px; // width of search field
     a{
+      font-size: 12px;
       margin-left: 5px;
       &:first-child{
         margin-left: 0px;

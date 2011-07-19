@@ -12,13 +12,10 @@ $main_font_color: #222;
   src: url(tango.ttf) format("truetype");
 }
 
-@font-face{
-  font-family: ubuntu;
-  src: url(Ubuntu-R.ttf) format("truetype");
-}
 
 body{
   background-image: url(blue_bg.png);
+  font-family: tahoma, helvetica, sans-serif;
   margin: 0;
 }
 
@@ -47,13 +44,6 @@ body{
   background-color: #222;
   position: fixed;
   bottom: 0;
-}
-
-body, p, ol, ul, td {
-  font-family: ubuntu, verdana, arial, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
-  color: $main_font_color;
 }
 
 pre {
