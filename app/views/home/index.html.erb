@@ -1,13 +1,20 @@
 <div id="subtitles_search">
   <%= form_tag home_path, :method => :get do %>
-    <%= text_field_tag :q, params[:q], :maxlength => 45 %>
-    <%= submit_tag "", :name => nil %>
+    <%= text_field_tag :q, params[:q], {:maxlength => 45, :autocomplete => 'off'} %>
+    <%= submit_tag '', :name => nil %>
   <% end %>
 
   <div id="search_terms">
     <% if !@search_terms.nil? %>
-      <% @search_terms.each do |q| %>
-        <%= link_to q, {:controller => 'home', :action => 'index', :q => q} %>
+      <% @search_terms.each do |term| %>
+        <div class="search_term">
+          <%= link_to term, {:controller => 'home', :action => 'index', :q => term}, {:name => 'search_term_link', :charset => 'UTF-8'} %>
+          <img src="assets/remove_buttom.png" class="remove_search_term_buttom"/>
+          <%# form_tag({:controller => 'home', :action => "remove_search_term"}, {:remote => true, :class => "remove_search_term_buttom"}) do %>
+            <%# hidden_field_tag 'term_to_remove', term %>
+            <%# image_submit_tag "remove_buttom.png" %> 
+          <%# end %>
+        </div>
       <% end %>
     <% end %>
   </div>

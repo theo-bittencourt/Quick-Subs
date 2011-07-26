@@ -4,38 +4,51 @@
   You can use Sass (SCSS) here: http://sass-lang.com/
 */
 
-$body_background_color: #eee;
-$main_font_color: #222;
+$header_wrp_bg_color: #8AB29F;
+$header_bottom_bg_color: #F2E6CE;
+$content_wrp_bg_color: #593325;
+$main_font_color: #F2E6CE;
 
 @font-face{
   font-family: tango;
   src: url(tango.ttf) format("truetype");
 }
 
+html{
+  height: 100%;
+}
+
 
 body{
-  background-image: url(blue_bg.png);
-  font-family: tahoma, helvetica, sans-serif;
+  background-image: url('black_pattern.png');
+  height: 100%;
   margin: 0;
+  font-family: tahoma, helvetica, sans-serif;
 }
 
-#header{
-  background-image: url(gray_bg.png);
-  height: 145px;
+#header_wrp{
+  #header{
+    background-image: url('green_top_pattern.png');
+    height: 85px;
+  }
+  #header_bottom{
+    height: 30px;
+    background-image: url('pastel_pattern.png');
+    box-shadow: black 0 0 10px;
+  }
+  #title{
+    margin: 80px auto 0;
+    display: block;
+  }
 }
 
-#title{
-  background-image: url(title.png);
-  background-repeat: no-repeat;
-  height: 71px;
-  width: 357px;
-  margin: 50px 0 0 40px;
-  display: inline-block;
 
-}
-
-#content{
-  padding: 45px 40px;
+#content_wrp{
+  #content{
+    width: 950px;
+    margin: auto;
+    padding: 45px 40px;
+  }
 }
 
 #bottom{
@@ -44,6 +57,7 @@ body{
   background-color: #222;
   position: fixed;
   bottom: 0;
+  display: none;
 }
 
 pre {
@@ -103,4 +117,11 @@ div.field, div.actions {
     font-size: 12px;
     list-style: square;
   }
+}
+
+
+
+
+.noise{
+  background: transparent url(noise.png);
 }

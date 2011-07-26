@@ -51,57 +51,7 @@
   }
 }
 
-#subtitles_search{
-  margin-bottom: 30px;
-  form{
-    height: 40px;
-    [type=text]{
-      border-color: #AAA;
-      border-style: solid;
-      border-width: 1px;
-      display: inline-block;
-      float: left;
-      font-size: 22px;
-      -webkit-text-stroke: 1px transparent; /* aparencia mais suave (como um anti-alias) */
-      height: 40px;
-      margin: 0;
-      -moz-box-sizing: border-box;
-      padding: 0 0 0 20px;
-      -webkit-appearance: none;
-      width: 25em;
-      border-radius: 20px;
-      outline: none;
-    }
-    [type=submit]{
-      background: transparent url(mg_glass.png) no-repeat;
-      height: 30px;
-      width: 29px;
-      border: 0;
-      cursor: pointer;
-      position: relative;
-      top: 4px;
-      left: -50px;
-      outline: none;
-    }
-  }
-  
-  #search_terms{
-    display: block;
-    margin: 5px 0 0 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 520px; // width of search field
-    a{
-      font-size: 12px;
-      margin-left: 5px;
-      &:first-child{
-        margin-left: 0px;
-      }
-    }
-  }
 
-}
 
 
 #download_bt {
