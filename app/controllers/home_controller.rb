@@ -10,6 +10,7 @@ class HomeController < ApplicationController
       flash[:notice] = "Nenhuma legenda encontrada" unless @subtitles.present?
     end
     
+    #turn search terms avaible to view
     if cookies[:search_terms]
       @search_terms = cookies[:search_terms].split('&')
       @search_terms = @search_terms | @search_terms

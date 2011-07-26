@@ -39,13 +39,10 @@ class ApplicationController < ActionController::Base
         if cookies[:search_terms].size > 500
           compact_array = term_array[0..15]
           cookies.permanent[:search_terms] = compact_array.join('&')
-          cookies.permanent[:search_terms] = term + '&' + cookies[:search_terms]
-        else
-          cookies.permanent[:search_terms] = term + '&' + cookies[:search_terms]
         end
+        cookies.permanent[:search_terms] = term + '&' + cookies[:search_terms]
       end
     end
   end
-
 
 end
