@@ -23,6 +23,7 @@
   margin-bottom: 1em;
   position: relative;
   a{
+    display: inline-block;
     outline: none;
     padding: 0 0 3px;
     text-decoration: none;
@@ -34,7 +35,6 @@
   .info{
     display: none;
     position: absolute;
-    top: 21px;
     z-index: 1;
     padding: 10px;
     background-color: rgba(3,3,3,0.85);
