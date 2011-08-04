@@ -19,6 +19,7 @@ class ApiTest < Test::Unit::TestCase
   def test_deve_autenticar
     LtvApi.conectar
     assert LtvApi.autenticar
+    LtvApi.logoff
   end
 
   def test_deve_nao_autenticar
@@ -26,11 +27,19 @@ class ApiTest < Test::Unit::TestCase
     assert_equal false, LtvApi.autenticar("john", "doe")
   end
 
+  def test_deve_fazer_logoff
+    LtvApi.conectar
+    LtvApi.autenticar
+    assert LtvApi.logoff
+  end
+
   def test_deve_retornar_array_de_resultados_da_busca
     LtvApi.iniciar
 
-    retorno = LtvApi.buscar("old boy")
+    retorno = LtvApi.buscar("breaking bad")
     assert_equal String, retorno[0][:id].class
+
+    LtvApi.logoff
   end
 
   def test_deve_retornar_mechanize_file_no_methodo_baixar
@@ -38,6 +47,8 @@ class ApiTest < Test::Unit::TestCase
 
     retorno = LtvApi.baixar("4d109fc88be299bd5d71f4822bc7107c")
     assert_equal Mechanize::File, retorno.class
+
+    LtvApi.logoff
   end
 
   def test_deve_montar_pack
@@ -53,6 +64,7 @@ class ApiTest < Test::Unit::TestCase
   def test_deve_estar_logado
     LtvApi.iniciar
     assert LtvApi.check_auth_status
+    LtvApi.logoff
   end
 
   def test_deve_nao_estar_logado
@@ -66,6 +78,8 @@ class ApiTest < Test::Unit::TestCase
 
     LtvApi.iniciar
     assert LtvApi.check_status
+
+    LtvApi.logoff
   end
 
 end

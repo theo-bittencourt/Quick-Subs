@@ -2,6 +2,7 @@
 
 require 'mechanize'
 require 'timeout'
+require 'ruby-debug'
 
 class LtvApi
 
@@ -37,26 +38,35 @@ class LtvApi
     retorno =  @agent.submit(form_login)
     if retorno.search("//*[contains(text(), 'Dados incorretos!')]").empty?
       @agent.page.links[0].click
-      "autenticou"
+      true
+    else
+      false
+    end
+  end
+
+  def self.logoff
+    if check_status
+      @agent.click(@agent.page.link_with(:text => 'Logoff...'))   
     end
   end
 
   def self.check_status
-    if @agent.page
+    if @agent.get('http://legendas.tv')
       check_auth_status
     end
   end
 
   def self.check_auth_status
-    if @agent.page
-      @agent.page.link_with(:text => 'Logoff...')
+    if @agent.page.link_with(:text => 'Logoff...')
+      true
+    else
+      false
     end
   end
 
   def self.buscar(termo)
     form_busca = @ltv_home.form_with(:action => "index.php?opcao=buscarlegenda")
     form_busca["txtLegenda"] = termo
-
     resultado = coletar(@agent.submit(form_busca))
   end
 
@@ -135,15 +145,19 @@ class LtvApi
         }
       end
 
-      pagina = proxima_pagina(pagina)
+      pagina = proxima_pagina
     end
-
     return legendas
   end
 
-  def self.proxima_pagina(pagina)
-    if not pagina.search("//a[text()='Próxima']").empty?
-      proxima_pagina =  @agent.click(pagina.links_with(:text => "Próxima").first)
+  def self.proxima_pagina
+    if not @agent.page.search("//a[text()='Próxima']").empty?
+      paginacao_atual = @agent.page.search(".paginacaoatual").text.to_i
+      paginacao_proxima = "%02d" % (paginacao_atual + 1)
+      #novo método para contornar um bug de paginação do LTV. ("breaking bad" -> página 3")
+      proxima_pagina = @agent.get("/index.php?opcao=buscarlegenda&pagina=#{paginacao_proxima}", [])
+      #antigo método
+      #proxima_pagina =  @agent.click(pagina.links_with(:text => "Próxima").first)
     else
       nil
     end
