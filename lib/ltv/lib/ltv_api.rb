@@ -2,7 +2,6 @@
 
 require 'mechanize'
 require 'timeout'
-require 'ruby-debug'
 
 class LtvApi
 
